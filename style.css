@@ -16,11 +16,10 @@
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
   }
   #container {
-      display: grid;
-      
+      display: grid;      
   }
 /*the above taken from Wes Bos' CSS Grid tutorials */
-
+/*RANDOM CHANGE!!!*/
 #wrapper {
     display: grid; 
     margin: auto;   
@@ -77,6 +76,7 @@
 .squares {
     margin: auto;
     margin-bottom: 10px;
+    
 }
 
 .slider::-webkit-slider-thumb {
