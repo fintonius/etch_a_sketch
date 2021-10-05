@@ -12,16 +12,43 @@
 
 //var userNumber = prompt('How many squares?');
 //var squareNumber = userNumber * userNumber;
-var slider = document.getElementById("userInput");
-var output = document.getElementById("output");
-output.innerHTML = slider.value;
+var slider = document.getElementById("slider");
+var output1 = document.getElementById("output1");
+var output2 = document.getElementById("output2");
+var box = document.getElementById('wrapper');
+var rainbowButton = document.getElementById("rainbow");
+var rainbow = '';
+var eraser = ''; //the button should stay 'clicked' for this. 'Unclicking' reverts to colouring
 var userNumber = slider.value;
+output1.textContent = slider.value;
+output2.textContent = slider.value;
 
-slider.oninput = function () {
-    output.innerHTML = this.value;
+//Using a class for 'output' returns an array which was overly complicated to add the slider value to
+//so just went with 2 id instead.
+slider.oninput = function () { 
+    output1.textContent = this.value; 
+    output2.textContent = this.value;   
 }
 
-function createDiv() {
+slider.onchange = function () {
+    userNumber = this.value;
+    createGrid();
+}
+function rainbowClick() {
+    rainbow = 'true';
+    createGrid();
+}
+function rainbowDiv() {
+  
+   var redDiv = document.createElement('div');
+   redDiv.className = 'square';
+   redDiv.addEventListener("mouseover", function(event) {
+       event.target.style.backgroundColor = "red";
+   });   
+   return redDiv;
+};
+
+function createDiv() {   
     var squareDiv = document.createElement('div');
     squareDiv.className = 'square';
     squareDiv.addEventListener("mouseover", function(event) {
@@ -30,20 +57,33 @@ function createDiv() {
     return squareDiv;
 };
 
+//only 'resizing' grid should reset? Changing colour should keep current drawing
 function createGrid() {
-    var box = document.getElementById('wrapper')
+    box.innerHTML = ``;
     let myDivs = [];
     let i = 0;
     wrapper.style.gridTemplateColumns = `repeat(${userNumber}, 1fr)`
     wrapper.style.gridTemplateRows = `repeat(${userNumber}, 1fr)`
 
+    if (rainbow === 'true') {
+        console.log('getting there');
+        for (i; i <= userNumber * userNumber; i++) {
+            myDivs.push(rainbowDiv());
+            box.appendChild(myDivs[i]);
+        }
+    } else {
     for (i; i <= userNumber * userNumber; i++) {
         myDivs.push(createDiv());
         box.appendChild(myDivs[i]);
     }
+    }
+}
 
+function resetFunction() {
+    box.innerHTML = ``;
+    
+    createGrid();
 }
 
 createGrid();
-
 console.log(userNumber);
