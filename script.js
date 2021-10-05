@@ -2,16 +2,10 @@
 //add a button which will clear the grid and ask the user how many
 //squares PER SIDE the new grid should contain.
 
-//SO the grid needs to be adjustable, needs to work with changing user input.
-//A function that squares the number and creates that amount of divs.
-//THE SIZE OF THE OVERALL GRID NEEDS TO REMAIN THE SAME, eg: ALWAYS 800px WIDE
+//NOW: need to have a variable to cast current state into? Don't really know what I'm doing. 
+//I think it might be best to branch and restart TBH. It feels like it's a lot of patching
+//the current script and finding convoluted work arounds to current stuff to "make" it work
 
-// **remember to give the divs a small border just to see what's being made :) **
-
-//create a function that takes in the user input and creates a grid of divs heights & width of input
-
-//var userNumber = prompt('How many squares?');
-//var squareNumber = userNumber * userNumber;
 var slider = document.getElementById("slider");
 var output1 = document.getElementById("output1");
 var output2 = document.getElementById("output2");
@@ -81,7 +75,6 @@ function createGrid() {
 
 function resetFunction() {
     box.innerHTML = ``;
-    
     createGrid();
 }
 
