@@ -14,15 +14,17 @@
             <header class="header">
                 <h1 class="title">ETCH-A-SKETCH</h1>
             </header>
-            <div id="wrapper" class="wrapper"></div>
+            
             <div class="slideBar">
                 <input type="range" min="1" max="100" value="1" class="slider" id="slider">
             </div>
             <div class="squares">Squares: <span id="output1">...</span> x <span id="output2">...</span></div>
-            <button class="button" onclick="resetFunction()">RESET</button>
+            <button class="button" id="reset" onclick="reset()">RESET</button>
             <button class="button" id="rainbow" onclick="rainbowClick()">RAINBOW</button>
-            <button class="button" id="colour">COLOUR PICKER</button>
+            <button class="button" id="colour" onclick="colourPicker()">COLOUR PICKER</button>
+            <button class="button" id="random" onclick="randomColour()">RANDOM COLOUR</button>
             <button class="button" id="eraser">ERASER</button>
+            <div id="wrapper" class="wrapper"></div>
         </div>
     </body>
 

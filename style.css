@@ -16,15 +16,17 @@
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
   }
   #container {
-      display: grid;      
+      display: grid; 
+      
   }
+ 
 /*the above taken from Wes Bos' CSS Grid tutorials */
 
 #wrapper {
     display: grid; 
     margin: auto;   
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     border: solid 1px var(grey);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
     
@@ -46,8 +48,23 @@
     opacity: .7;
 }
 
+#reset {
+    grid-row: 1;
+}
+#rainbow {
+    grid-row: 2;
+}
+#colour {
+    grid-row: 3;
+}
+#eraser {
+    grid-row: 4;
+}
 .header {
+    display: grid;
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .slideBar {

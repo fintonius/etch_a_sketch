@@ -15,17 +15,22 @@
 //function to allow random-color change for mouse-over action
     //when the grid is created are the divs stored in a way that is accessible by this function?
     //add eventlistener to the div when it's created - if (rainbowClick === 'true') {}  else {} ?
-
-    const defaultSize = '';
-    const defaultColor = '';
+    const defaultSize = 50;
+    window.onload = () => {
+        slider.value = defaultSize; //Can't get the other values to reset to defaultSize even though
+        //they all take their value from slider.value. 
+        output1.textContent = defaultSize;
+        output2.textContent = defaultSize;
+        userNumber = defaultSize;
+        createGrid();
+    };
 
     var currentColor = `var(--black)`;
-
+    var randomColor = '';
     var slider = document.getElementById("slider");
     var output1 = document.getElementById("output1");
     var output2 = document.getElementById("output2");
     var box = document.getElementById('wrapper');
-    var rainbowButton = document.getElementById("rainbow");
     var rainbow = '';
     var eraser = ''; //the button should stay 'clicked' for this. 'Unclicking' reverts to colouring
     var userNumber = slider.value;
@@ -42,7 +47,7 @@
         userNumber = this.value;
         createGrid();
     }
-
+    16
     function createGrid() {   
         box.innerHTML = '';    
         wrapper.style.gridTemplateColumns = `repeat(${userNumber}, 1fr)`;
@@ -52,19 +57,54 @@
         for (i; i <= userNumber * userNumber; i++) {
             squareDiv = document.createElement('div');
             squareDiv.addEventListener("mouseover", function(event) {
-                event.target.style.backgroundColor = currentColor;
+                if (rainbow === 'true') {
+                    //code from michalosman's etch-a-sketch  
+                    const randomR = Math.floor(Math.random() * 256);
+                    const randomG = Math.floor(Math.random() * 256);
+                    const randomB = Math.floor(Math.random() * 256);
+                    console.log(randomR, randomB, randomG);
+                    currentColor = `RGB(${randomR}, ${randomG}, ${randomB})`
+                    event.target.style.backgroundColor = currentColor;
+                } else if (colour === 'true') {
+                    event.target.style.backgroundColor = currentColor;
+                } else if (randomColor === 'true') {
+                    event.target.style.backgroundColor = currentColor;
+                } else {
+                    event.target.style.backgroundColor = currentColor;
+                }16
             });
             box.appendChild(squareDiv);
         }
         };
 
+    //IS THERE A WAY TO CHANGE THE BUTTON COLOUR TO = THE RANDOM COLOURS AS GENERATED?!
     function rainbowClick() {
-        
-        //code from michalosman's etch-a-sketch
+        rainbow = 'true';
+        randomColor = 'false';
+        colour = 'false';16
+    }
+
+    function colourPicker() {
+        colour = 'true';
+        rainbow = 'false';        
+        currentColor = `var(--black)`;
+    }
+
+    //IS THERE A WAY TO CHANGE THE BUTTON COLOUR TO = THE RANDOM COLOUR?
+    function randomColour() {
+        randomColor = 'true';
+        colour = 'false';
+        rainbow = 'false';
+        //code from michalosman's etch-a-sketch 
         const randomR = Math.floor(Math.random() * 256);
         const randomG = Math.floor(Math.random() * 256);
         const randomB = Math.floor(Math.random() * 256);
         console.log(randomR, randomB, randomG);
         currentColor = `RGB(${randomR}, ${randomG}, ${randomB})`
     }
-    createGrid();
+
+    function reset() {
+        createGrid();
+    }
+
+    
